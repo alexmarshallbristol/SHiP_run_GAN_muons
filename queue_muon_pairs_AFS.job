@@ -1,0 +1,11 @@
+job = Muon_pairs
+Universe = vanilla
+executable = muon_pairs_exe_AFS
+environment = "id=$(Process)"
+when_to_transfer_output = ON_EXIT
+log = OUTPUT/$(job)_$(Cluster).log
++JobFlavour = "testmatch"
+output = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+error = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+queue 5
+

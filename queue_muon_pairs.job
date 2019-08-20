@@ -1,0 +1,13 @@
+job = Muon_pairs
+Universe = vanilla
+requirements = (OpSysAndVer =?= "SLCern6")
+executable = muon_pairs_exe
+environment = "id=$(Process)"
+transfer_input_files=fairship.tar.gz,parallel_make_pairs.py,job_order.npy,tracks.root,list_of_file_ID.npy,track_truth_data.npy,geofile_full.conical.MuonBack-TGeant4.root,track_location_array.npy
+when_to_transfer_output = ON_EXIT
+log = OUTPUT/$(job)_$(Cluster).log
++JobFlavour = "testmatch"
+output = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+error = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+queue 25
+

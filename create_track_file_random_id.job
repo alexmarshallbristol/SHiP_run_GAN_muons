@@ -1,0 +1,12 @@
+job = create_track_file_random_id_EXE
+Universe = vanilla
+requirements = (OpSysAndVer =?= "SLCern6")
+executable = create_track_file_random_id_EXE
+transfer_input_files=fairship.tar.gz,create_track_file_random_id.py,geofile_full.conical.MuonBack-TGeant4.root,list_of_file_ID.npy
+when_to_transfer_output = ON_EXIT
+log = OUTPUT/$(job)_$(Cluster).log
++JobFlavour = "testmatch"
+output = OUTPUT/$(job)_$(Cluster)_$(Process).out
+error = OUTPUT/$(job)_$(Cluster)_$(Process).out
+queue
+

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ls -l
+echo 
+echo
+
+
+source /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/FairShipRun/config.sh
+
+
+python create_track_file_random_id.py
+
+ls -l
+
+cp tracks.root /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/.
+cp track_location_array.npy /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/.
+cp track_location_array_start_momentum.npy /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/.
+
+echo "copied"

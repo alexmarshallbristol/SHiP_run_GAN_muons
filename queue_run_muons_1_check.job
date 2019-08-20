@@ -1,0 +1,12 @@
+job = SHiP_Muons
+Universe = vanilla
+requirements = (OpSysAndVer =?= "SLCern6")
+executable = run_muons_exe_1_check
+environment = "id=$(Process)"
+transfer_input_files=fairship.tar.gz,convert.py,list_of_file_ID.npy,copy_file_1_check.py,copy_file_post_1.py
+when_to_transfer_output = ON_EXIT
+log = OUTPUT/$(job)_$(Cluster).log
++JobFlavour = "tomorrow"
+output = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+error = /eos/experiment/ship/user/amarshal/HUGE_GAN_output/$(job)_$(Cluster)_$(Process).out
+queue 7500

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+ls -l
+echo 
+echo
+
+tar -zxvf fairship.tar.gz
+export SHIPBUILD=/cvmfs/ship.cern.ch/SHiPBuild
+cd FairShip
+./localBuild.sh
+cd ..
+cd FairShipRun
+source config.sh
+cd ..
+
+
+python get_tracks_from_file_random_id.py
+
+
+ls -l
+
+cp track_truth_data.npy /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/.
+
+echo "copied"

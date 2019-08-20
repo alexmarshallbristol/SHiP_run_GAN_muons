@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/FairShipRun/config.sh
+
+python /afs/cern.ch/user/a/amarshal/FairSHiP_run_GAN_muons/parallel_make_pairs_AFS.py -jobid "$id"
+
+rm collected_pair_info_*

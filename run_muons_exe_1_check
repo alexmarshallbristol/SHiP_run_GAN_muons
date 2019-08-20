@@ -1,0 +1,56 @@
+#!/bin/bash
+python copy_file_1_check.py -jobid "$id"
+
+if ls file_is_not_present* 1> /dev/null 2>&1; then
+	tar -zxvf fairship.tar.gz
+	export SHIPBUILD=/cvmfs/ship.cern.ch/SHiPBuild/
+	cd FairShip
+	./localBuild.sh
+	cd ..
+	cd FairShipRun
+	source config.sh
+	cd ..
+	echo
+	ls -l
+	echo
+
+	ls -l
+	echo
+	python convert.py
+	echo
+	ls -l
+	echo
+	rm muons.npy
+
+	echo "muons converted"
+
+	python FairShip/macro/run_simScript.py -f muons.root --MuonBack --FastMuon -n 1100000
+
+	ls -l
+	echo
+
+	python FairShip/macro/ShipReco.py -g geofile_full.conical.MuonBack-TGeant4.root -f ship.conical.MuonBack-TGeant4.root
+
+	if [[ ! -f Reco_finished.txt ]] ; then
+	    echo 'File "Reco_finished.txt" is not there, aborting.'
+	    exit
+	fi
+
+	python copy_file_post_1.py -jobid "$id"
+
+	echo
+
+	ls -l 
+	rm dummy
+	rm ship.conical.MuonBack-TGeant4.root
+	rm ship.conical.MuonBack-TGeant4_rec.root
+	rm ship.params.conical.MuonBack-TGeant4.root
+	rm geofile_full.conical.MuonBack-TGeant4.root
+	rm recohists.root
+	rm muons.root
+	rm -r FairShip
+	rm -r FairShipRun
+	rm -r fairship.tar.gz
+else
+	echo "files do exist.. cancel job"
+fi
